@@ -7,16 +7,16 @@ import java.util.Queue;
 
 public class BinarySearchTree {
 
-	class Node {
-		Integer value;
-		Node left;
-		Node right;
+	public static class Node {
+		public Integer value;
+		public Node left;
+		public Node right;
 		
-		Node() {
+		public Node() {
 			
 		}
 		
-		Node(int value) {
+		public Node(int value) {
 			this.value = value;
 		}
 	}
@@ -42,6 +42,8 @@ public class BinarySearchTree {
 			// This BinarySearchTree does not accept duplicates hence returning null
 			if(value == current.value) return null;
 			if(value < current.value) {
+				// Checks until this condition is reached, when we can actually insert
+				// i.e iterates until a leaf node is reached
 				if(current.left == null) {
 					current.left = newNode;
 					return this;
@@ -76,6 +78,11 @@ public class BinarySearchTree {
 		return found;
 	}
 	
+	/**
+	 * Traverses through the tree with the help of Queue DS
+	 * Implemented iteratively
+	 * @return
+	 */
 	List<Integer> BFS() {
 		Queue<Node> bstQ = new LinkedList<Node>();
 		Node node = this.root;
@@ -90,6 +97,11 @@ public class BinarySearchTree {
 		return data;
 	}
 	
+	/**
+	 * All types of DFS of a BST
+	 * @param order
+	 * @return
+	 */
 	List<Integer> DFS(String order) {
 		List<Integer> data = new ArrayList<>();
 		Node node = this.root;
@@ -132,6 +144,19 @@ public class BinarySearchTree {
 		data.add(node.value);
 		if(node.right != null)
 			traverseInOrder(node.right, data);
+	}
+	
+	/**
+	 * Recursive method which performs logical OR operations and bubble up
+	 * the result
+	 * @param root
+	 * @param value
+	 * @return
+	 */
+	public static Boolean isPresent(Node root, Integer value) {
+		if(root == null) return false;
+		if(root.value == value) return true;
+		return isPresent(root.left, value) || isPresent(root.right, value);		
 	}
 
 	

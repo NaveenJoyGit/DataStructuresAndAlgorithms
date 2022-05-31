@@ -8,6 +8,11 @@ public class Sample {
 			return;
 		}
 		System.out.print(num);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		countDown(num - 1);
 	} 
 	
@@ -24,11 +29,19 @@ public class Sample {
 
 	public static void main(String[] args) {
 		
-		countDown(5);
+//		countDown(5);
 		
-		System.out.println(sumRange(4));
-		System.out.println(fact(5));
+//		System.out.println(sumRange(4));
+//		System.out.println(fact(5));
 		
+		long result = power(2, 5);
+		System.out.println(result);
+		
+	}
+	
+	public static long power(int base, int exp) {
+		if(exp == 1) return base;
+		return base * power(base, exp - 1);
 	}
 	
 }

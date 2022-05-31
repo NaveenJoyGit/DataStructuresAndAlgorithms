@@ -15,6 +15,7 @@ public class Main {
 		String result = bst.find(0) ? "PASS" : "FAIL";
 		System.out.println(result);
 		System.out.println(bst.BFS());
+		System.out.println(bst.DFS("preOrder"));
 	}
 
 }
